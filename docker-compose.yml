@@ -1,0 +1,103 @@
+version: '3.8'
+
+services:
+  # Redis Instances
+  redis-main:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - backend-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    volumes:
+      - redis-main-data:/data
+
+  redis-alt:
+    image: redis:7-alpine
+    ports:
+      - "6380:6379"
+    networks:
+      - backend-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    volumes:
+      - redis-alt-data:/data
+
+  # Backend Services
+  gc-auth-backend:
+    build: ./gc-auth-backend
+    ports:
+      - "8000:8000"
+    networks:
+      - backend-network
+    environment:
+      - REDIS_HOST=redis-main
+      - REDIS_PORT=6379
+    depends_on:
+      redis-main:
+        condition: service_healthy
+
+  gc-chat-backend:
+    build: ./gc-chat-backend
+    ports:
+      - "8002:8002"
+    networks:
+      - backend-network
+
+  gc-schedule-backend:
+    build: ./gc-scheduler-backend
+    ports:
+      - "50051:50051"
+    networks:
+      - backend-network
+    environment:
+      - REDIS_HOST=redis-alt
+      - REDIS_PORT=6379
+    depends_on:
+      redis-alt:
+        condition: service_healthy
+
+  gc-update-backend:
+    build: ./gc-update-backend
+    ports:
+      - "50052:50052"
+    networks:
+      - backend-network
+
+  gc-report-backend:
+    build: ./gc-report-backend
+    ports:
+      - "8005:8005"
+    networks:
+      - backend-network
+
+  frontend:
+    build: ./opensoft
+    ports:
+      - "3000:3000"
+    networks:
+      - backend-network
+    environment:
+      - NEXT_PUBLIC_API_AUTH=http://gc-auth-backend:8000
+      - NEXT_PUBLIC_API_CHAT=http://gc-chat-backend:8002
+      - NEXT_PUBLIC_API_REPORT=http://gc-report-backend:8005
+    depends_on:
+      - gc-auth-backend
+      - gc-chat-backend
+      - gc-report-backend
+
+# Network and Volume Configs
+networks:
+  backend-network:
+    driver: bridge
+
+volumes:
+  redis-main-data:
+  redis-alt-data:

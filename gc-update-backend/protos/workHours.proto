@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package workhours;
+
+// gRPC service
+service UserService {
+    rpc UpdateWorkHours (UpdateWorkHoursRequest) returns (UpdateWorkHoursResponse);
+}
+
+// Request & Response Messages
+message UpdateWorkHoursRequest {
+    string empid = 1;
+    int32  workHours= 2;
+}
+
+message UpdateWorkHoursResponse{
+    bool success =1;
+    string message =2;
+}
+
+

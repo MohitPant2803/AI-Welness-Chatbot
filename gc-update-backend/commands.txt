@@ -1,0 +1,7 @@
+// celery
+celery -A proj worker --pool=threads --concurrency=10 -l INFO
+
+celery -A proj beat --loglevel=info
+
+// grpc.py files
+python -m grpc_tools.protoc -I./protos --python_out=./ --pyi_out=./ --grpc_python_out=./ SOD.proto

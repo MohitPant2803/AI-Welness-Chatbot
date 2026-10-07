@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package emailssent;
+
+// gRPC service
+service UserService {
+    rpc UpdateEmails (UpdateEmailsRequest) returns (UpdateEmailsResponse);
+}
+
+// Request & Response Messages
+message UpdateEmailsRequest {
+    string empid = 1;
+    int32  numberOfemailsSent= 2;
+}
+
+message UpdateEmailsResponse{
+    bool success =1;
+    string message =2;
+}
+
+

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package user;
+
+import "google/protobuf/timestamp.proto";
+
+// gRPC service
+service UserService {
+    rpc UpdateAtSOD (UpdateAtSODRequest) returns (UpdateAtSODResponse);
+}
+
+// Request & Response Messages
+message UpdateAtSODRequest {
+    string empid = 1;
+}
+
+message UpdateAtSODResponse{
+    bool success =1;
+    string message =2;
+    int32 streakDays = 3;
+    int32 numberOfParticipants = 4;
+    int32 chatCheckInPoints = 5;
+    int32 streakBonusPoints = 6;
+    google.protobuf.Timestamp timestamp = 7;
+
+}
+
+

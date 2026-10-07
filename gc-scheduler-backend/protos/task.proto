@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package scheduler;
+
+service Scheduler {
+    rpc ScheduleMeet (MeetRequest) returns (MeetResponse) {}
+}
+
+message MeetRequest {
+    string empid = 1;
+    string emailID = 2;
+    string message = 3;
+    string empName = 4;
+    int64 timestamp = 5;
+}
+
+message MeetResponse {
+    bool success = 1;
+    string job_id = 2;
+}

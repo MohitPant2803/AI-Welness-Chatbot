@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package meetingsattended;
+
+// gRPC service
+service UserService {
+    rpc UpdateMeeting (UpdateMeetingRequest) returns (UpdateMeetingResponse);
+}
+
+// Request & Response Messages
+message UpdateMeetingRequest {
+    string empid = 1;
+    int32  numberOfmeetingsAttended= 2;
+}
+
+message UpdateMeetingResponse{
+    bool success =1;
+    string message =2;
+}
+
+

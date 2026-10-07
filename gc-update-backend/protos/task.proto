@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package leave;
+
+service LeaveService {
+    rpc SubmitLeaveRequest (LeaveRequest) returns (LeaveResponse);
+}
+
+message LeaveRequest {
+    string currentMood = 5;
+    bool isEscalated = 6;
+    string briefMoodSummary = 7;
+    string currentMoodRate = 8;
+    string userChat = 9;
+    string botChat = 10;
+    string empid = 11;
+    int32 wellnessScore = 12;
+    string moodAnalysis = 13;
+    string recommendedAction = 14;
+    string chatAIAnalysis = 15;
+}
+
+message LeaveResponse {
+    string message = 1;
+    string jobId = 2;
+}

@@ -1,0 +1,30 @@
+{
+  "EMP0236": {
+    "moodScore": 42,
+    "moodFactors": [
+      "Base score: 50",
+      "Avg work hours 0.0 (Work Patterns): -10 (30% weight)",
+      "Daily engagements 0 (Work Patterns): -3 (30% weight)",
+      "Total points 597, Awards won 2 (Recognition & Growth): +5 (25% weight)",
+      "Promotion Considered False (Recognition & Growth): -2 (25% weight)",
+      "Total leaves 0 (Well-being): +2 (20% weight)",
+      "Recent vibe score 5 (Well-being): -8 (20% weight)",
+      "Training not completed (Sentiment Signals): -2 (15% weight)",
+      "No performance ratings (Temporal): -2 (10% weight)"
+    ]
+  },
+  "EMP0497": {
+    "moodScore": 31,
+    "moodFactors": [
+      "Base score: 50",
+      "Low avg work hours (0.0 hrs): -15 (Work Patterns: 30% weightage)",
+      "No daily engagements: -5 (Work Patterns: 30% weightage)",
+      "No reward points or awards: -10 (Recognition & Growth: 25% weightage)",
+      "Promotion not considered: -5 (Recognition & Growth: 25% weightage)",
+      "Recent vibe score is low (2): -10 (Well-being Indicators: 20% weightage)",
+      "No leave taken recently: +2 (Well-being Indicators: 20% weightage)",
+      "Training not completed: -5 (Sentiment Signals: 15% weightage)",
+      "No performance ratings: -1 (Temporal Patterns: 10% weightage)"
+    ]
+  }
+}

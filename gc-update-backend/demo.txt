@@ -1,0 +1,67 @@
+STREAK (Daily once if an employee starts to chat) -
+    USER_DETAILS
+        streakDays
+            wellnessPoints
+            wellnessPointEntry
+                chatCheckIn
+                    points
+                streakBonus
+                    points
+    ADMIN_DB
+        dailyChatParticipation:
+            date: Today
+            numberOfParticipants+=1
+
+UPDATED_PER_CHAT - (leaveType=str, numberOfDays=int, startDate=datetime, endDate=datetime, currentMood=str, isEscalated=boolean, briefMoodSummary=str, currentMoodRate=int, userChat=str, botChat=str) => (message=str, jobId=str)
+    USER_DETAILS
+        level /
+        levelProgress /
+        [conditional] leaves /?
+    ADMIN_EMP_EMPID
+        lastActive /
+        currentMood /
+        isEscalated / 
+        briefMoodSummary / 
+        currentMoodRate /
+        leaveHistory /?
+        chatHistory /
+    ADMIN_DBALL
+        lastActive /
+        currentMood /
+        isEscalated /
+        briefMoodSummary /
+    ADMIN_DB
+        totalChatInteractions /
+        noOfHappyEmp /
+        noOfEscalatedIssues /
+        briefEscalatedUsersList /
+
+
+PARTICULAR_ENDPOINTS
+    1
+        USER_DETAILS - numberOfteamMessages
+        ADMIN_EMP_EMPID - teamMessages
+    2   
+        USER_DETAILS - numberOfemailsSent
+        ADMIN_EMP_EMPID - emailsSent
+    3
+        USER_DETAILS - numberOfmeetingsAttended
+        ADMIN_EMP_EMPID - meetings
+    4
+        USER_DETAILS - workHours
+        ADMIN_EMP_EMPID - workHours
+    5
+        USER_DETAILS - wellnessPointsChangedThisWeek
+    6
+        USER_DETAILS - avaiableRewards
+    7    
+        USER_DETAILS - pastRewards
+    8
+        USER_DETAILS - awards
+    9
+        USER_DETAILS - companyAwards
+        ADMIN_EMP_EMPID - companyAwards
+    10
+        ADMIN_DB - hikeFromPrevMonth
+    11
+        AddEmployee

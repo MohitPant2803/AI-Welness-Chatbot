@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package teammessages;
+
+// gRPC service
+service UserService {
+    rpc UpdateTeamMessages (UpdateTeamMessagesRequest) returns (UpdateTeamMessagesResponse);
+}
+
+// Request & Response Messages
+message UpdateTeamMessagesRequest {
+    string empid = 1;
+    int32 numberOfteamMessages = 2;
+}
+
+message UpdateTeamMessagesResponse{
+    bool success =1;
+    string message =2;
+}
+
+
